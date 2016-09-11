@@ -9,7 +9,7 @@ Here are the steps that must be performed before running the R script:
 * Unzip the file
 * Move ALL the files (maintaining the same directory structure) to the SAME DIRECTORY as the R script
 
-Once those steps are complete, you can run the R script (run_analysis.R). Note that it requires the [data.table] (https://cran.r-project.org/web/packages/data.table/index.html) and [dplyr] (https://cran.r-project.org/web/packages/dplyr/index.html) packages.
+Once those steps are complete, you can run the R script [run_analysis.R] (https://github.com/mguevara1986/DataCleaningAssignment/blob/master/run_analysis.R). Note that it requires the [data.table] (https://cran.r-project.org/web/packages/data.table/index.html) and [dplyr] (https://cran.r-project.org/web/packages/dplyr/index.html) packages.
 
 The run_analysis.R script that does the following.
 
