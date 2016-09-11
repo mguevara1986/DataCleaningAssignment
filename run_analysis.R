@@ -1,9 +1,7 @@
-setwd("/Users/Marc/Documents/Coursera/Data Science Specialization/Getting and Cleaning Data/Week4/Assignment/")
 library(data.table)
 library(dplyr)
 
 ##1. Merges the training and the test sets to create one data set
-
 #Read training and test sets
 subject_test<-read.table("./UCI HAR Dataset/test/subject_test.txt")
 names(subject_test)[1]<-"subject"
@@ -42,7 +40,7 @@ rm(subject_test,Y_test,X_test)
 test_train <- rbind(train_merge,test_merge)
 rm(train_merge,test_merge)
 
-##2. Extracts only the measurements on the mean and standard deviation for each measurement.
+##2. Extract only the measurements on the mean and standard deviation for each measurement.
 feature_select<-grepl("(mean|std)\\(\\)",feature_names)
 feature_final<-feature_names[feature_select]
 feature_final[80]<-"subject"
@@ -58,7 +56,7 @@ names(activity_label)[2]<-"activity_description"
 test_train_sub_2<-merge(x = test_train_sub,y = activity_label,by.x = "activity",all = TRUE)
 test_train_sub_2$activity <- NULL
 
-##4. Appropriately labels the data set with descriptive variable names.
+##4. Appropriately label the data set with descriptive variable names
 #Change t to Time, f to Freq, mean() to Mean and std() to Std. Remove extra dashes
 names(test_train_sub_2) <- gsub("^t", "Time", names(test_train_sub_2))
 names(test_train_sub_2) <- gsub("^f", "Freq", names(test_train_sub_2))
@@ -66,7 +64,7 @@ names(test_train_sub_2) <- gsub("-mean\\(\\)", "Mean", names(test_train_sub_2))
 names(test_train_sub_2) <- gsub("-std\\(\\)", "Std", names(test_train_sub_2))
 names(test_train_sub_2) <- gsub("-", "", names(test_train_sub_2))
 
-##5. From the data set in step 4, creates a second, independent tidy data set 
+##5. From the data set in step 4, create a second, independent tidy data set 
 ##with the average of each variable for each activity and each subject.
 test_train_sub_3<-aggregate(.~activity_description+subject, data=test_train_sub_2, FUN = mean)
 
